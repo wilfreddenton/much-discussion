@@ -1,0 +1,24 @@
+@import
+  'vendors/normalize';
+
+@import
+  'utils/variables',
+  'utils/mixins';
+
+@import
+  'base/reset',
+  'base/typography';
+
+// @import
+//   'layout';
+//
+// @import
+//   'components';
+//
+// @import
+//   'pages';
+
+#wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
