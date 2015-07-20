@@ -1,10 +1,10 @@
 var React = require('react')
+,   socket = require('../socket')
 ,   Input = require('./input')
 ,   TextArea = require('./text-area')
+,   PostStore = require('../stores/post-store')
 ,   PostActions = require('../actions/post-actions')
 ,   Markdown = require('./markdown');
-// ,   Router = require("react-router")
-// ,   RouteHandler = Router.RouteHandler;
 
 var PostForm = React.createClass({
   handleTitleChange: function(e) {
@@ -15,7 +15,14 @@ var PostForm = React.createClass({
   },
   handleSubmit: function() {
     this.props.submitCallback();
-    PostActions.createPost(this.state);
+    if (this.state._id) {
+      socket.emit('updatePost', {post: this.state});
+    } else {
+      socket.emit('createPost', {post: this.state});
+    }
+  },
+  getPostHandler: function(result) {
+    this.setState(result.post);
   },
   getInitialState: function() {
     return {
@@ -23,6 +30,12 @@ var PostForm = React.createClass({
       title: "",
       content: ""
     };
+  },
+  componentDidMount: function() {
+    if (this.props.params.post_id) {
+      socket.on('getPost', this.getPostHandler);
+      socket.emit('getPost', {postId: this.props.params.post_id});
+    }
   },
   render: function() {
     return (

@@ -8,7 +8,7 @@ var PostStore = mcFly.createStore({
     return _posts;
   },
   getPost: function(postId) {
-    return _.find(_posts, 'postId', postId);
+    return _.find(_posts, '_id', postId);
   },
   deletePost: function(postId) {
     _.remove(_posts, function(post) {
@@ -19,8 +19,10 @@ var PostStore = mcFly.createStore({
     _posts.push(post);
   },
   updatePost: function(post) {
-    var oldPost = this.getPost(post.postId);
-    oldPost = post;
+    _.remove(_posts, function(oldPost) {
+      return oldPost._id === post._id;
+    });
+    _posts.push(post);
   },
   loadPosts: function(posts) {
     _posts = posts;
@@ -37,6 +39,10 @@ var PostStore = mcFly.createStore({
       break;
     case "POST_CREATED":
       PostStore.createPost(payload.data);
+      PostStore.emitChange();
+      break;
+    case "POST_UPDATED":
+      PostStore.updatePost(payload.data);
       PostStore.emitChange();
       break;
     case "POST_GET":

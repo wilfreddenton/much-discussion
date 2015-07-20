@@ -1,4 +1,5 @@
 var React = require("react")
+,   socket = require('../socket')
 ,   Router = require("react-router")
 ,   TopicActions = require('../actions/topic-actions');
 
@@ -6,7 +7,7 @@ var Link = Router.Link;
 
 var TopicListItem = React.createClass({
   deleteTopic: function() {
-    TopicActions.deleteTopic(this.props._id);
+    socket.emit('deleteTopic', {topicId: this.props._id});
   },
   render: function() {
     return (

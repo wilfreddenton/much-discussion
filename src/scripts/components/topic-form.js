@@ -1,4 +1,5 @@
 var React = require("react")
+,   socket = require('../socket')
 ,   Input = require('./input')
 ,   TopicActions = require('../actions/topic-actions');
 
@@ -14,7 +15,7 @@ var TopicForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     if (this.state.inputValue != "") {
-      TopicActions.createTopic(this.state.inputValue);
+      socket.emit('createTopic', {name: this.state.inputValue});
       this.setState({
         inputValue: ""
       });

@@ -23,6 +23,7 @@ var routes = (
       <DefaultRoute name="topic-show" handler={PostTemp} />
       <Route name="post-new" path="posts/new" handler={PostForm} />
       <Route name="post" path="posts/:post_id" handler={Post} />
+      <Route name="post-edit" path="posts/:post_id/edit" handler={PostForm} />
     </Route>
     <NotFoundRoute handler={NotFound} />
   </Route>

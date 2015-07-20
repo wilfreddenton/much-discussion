@@ -1,10 +1,12 @@
 var React = require("react")
+,   socket = require('../socket')
 ,   Markdown = require('./markdown')
 ,   Replies = require('./replies')
 ,   ReplyForm = require('./reply-form')
 ,   ReplyActions = require('../actions/reply-actions')
 ,   ReplyStore = require('../stores/reply-store')
 ,   _ = require('lodash');
+
 
 var Post = React.createClass({
   mixins: [ReplyStore.mixin],
@@ -14,14 +16,22 @@ var Post = React.createClass({
       replies: ReplyStore.getReplies(this.props.params.post_id)
     };
   },
+  loadRepliesHandler: function(result) {
+    ReplyActions.loadReplies(result.replies);
+  },
+  createReplyHandler: function(result) {
+    ReplyActions.createReply(result.reply);
+  },
   getInitialState: function() {
     return this.getState();
   },
   componentWillReceiveProps: function(nextProps) {
-    ReplyActions.loadReplies(nextProps.params.post_id);
+    socket.emit('loadReplies', {postId: nextProps.params.post_id});
   },
   componentDidMount: function() {
-    ReplyActions.loadReplies(this.props.params.post_id);
+    socket.on('loadReplies', this.loadRepliesHandler);
+    socket.on('createReply', this.createReplyHandler);
+    socket.emit('loadReplies', {postId: this.props.params.post_id});
   },
   storeDidChange: function() {
     this.setState(this.getState());

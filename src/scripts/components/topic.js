@@ -1,10 +1,11 @@
 var React = require("react")
+,   socket = require('../socket')
 ,   Posts = require('./posts')
 ,   PostStore = require('../stores/post-store')
 ,   PostActions = require('../actions/post-actions')
 ,   TopicStore = require('../stores/topic-store')
 ,   TopicActions = require('../actions/topic-actions')
-,   Router = require("react-router")
+,   Router = require("react-router");
 
 var RouteHandler = Router.RouteHandler;
 var Navigation = Router.Navigation;
@@ -22,12 +23,27 @@ var Topic = React.createClass({
   setNewPost: function() {
     this.setState({newPost: true});
   },
+  loadPostsHandler: function(result) {
+    PostActions.loadPosts(result.topic);
+  },
+  updatePostHandler: function(result) {
+    PostActions.updatePost(result.post);
+  },
+  createPostHandler: function(result) {
+    PostActions.createPost(result.post);
+  },
+  deletePostHandler: function(result) {
+    PostActions.deletePost(result.postId);
+  },
   getInitialState: function() {
     return this.getState();
   },
   componentDidMount: function() {
-    TopicActions.loadTopics();
-    PostActions.loadPosts(this.props.params._id);
+    socket.on('loadPosts', this.loadPostsHandler);
+    socket.on('updatePost', this.updatePostHandler);
+    socket.on('createPost', this.createPostHandler);
+    socket.on('deletePost', this.deletePostHandler);
+    socket.emit('loadPosts', {topicId: this.props.params._id});
   },
   storeDidChange: function() {
     if (this.state.newPost) {

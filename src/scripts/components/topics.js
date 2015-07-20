@@ -1,4 +1,5 @@
 var React = require("react")
+,   socket = require('../socket')
 ,   TopicForm = require('./topic-form')
 ,   TopicActions = require('../actions/topic-actions')
 ,   TopicListItem = require('./topic-list-item')
@@ -15,8 +16,20 @@ var Topics = React.createClass({
   getInitialState: function() {
     return getState();
   },
+  loadTopicsHandler: function(result) {
+    TopicActions.loadTopics(result.topics);
+  },
+  createTopicHandler: function(result) {
+    TopicActions.createTopic(result.topic);
+  },
+  deleteTopicHandler: function(result) {
+    TopicActions.deleteTopic(result.topicId);
+  },
   componentDidMount: function() {
-    TopicActions.loadTopics();
+    socket.on('loadTopics', this.loadTopicsHandler);
+    socket.on('createTopic', this.createTopicHandler);
+    socket.on('deleteTopic', this.deleteTopicHandler);
+    socket.emit('loadTopics');
   },
   storeDidChange: function() {
     this.setState(getState());
