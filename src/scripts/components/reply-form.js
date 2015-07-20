@@ -15,7 +15,7 @@ var ReplyForm = React.createClass({
     socket.emit('createReply', {reply: this.state});
     this.setState({text: ""});
   },
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps: function(nextProps) {
     this.setState({postId: nextProps.postId});
   },
   getInitialState: function() {

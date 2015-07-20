@@ -7,7 +7,6 @@ var React = require("react")
 ,   ReplyStore = require('../stores/reply-store')
 ,   _ = require('lodash');
 
-
 var Post = React.createClass({
   mixins: [ReplyStore.mixin],
   getState: function() {
