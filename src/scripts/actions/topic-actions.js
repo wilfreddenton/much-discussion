@@ -14,7 +14,7 @@ var TopicActions = mcFly.createActions({
     //     data: result.topics
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   },
   createTopic: function(topic) {
@@ -30,7 +30,7 @@ var TopicActions = mcFly.createActions({
     //     data: result.topic
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   },
   deleteTopic: function(data) {
@@ -45,7 +45,7 @@ var TopicActions = mcFly.createActions({
         throw 'topic was not deleted';
       }
     }).catch(function(err) {
-      console.err(err);
+      console.error(err);
     });
   }
 });

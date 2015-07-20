@@ -15,7 +15,7 @@ var ReplyActions = mcFly.createActions({
     //     data: result.reply
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   },
   deleteReply: function(data) {
@@ -36,7 +36,7 @@ var ReplyActions = mcFly.createActions({
     //     data: result.replies
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   }
 });

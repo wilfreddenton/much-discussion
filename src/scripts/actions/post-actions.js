@@ -18,7 +18,7 @@ var PostActions = mcFly.createActions({
     //     });
     //   }
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   },
   createPost: function(post) {
@@ -33,7 +33,7 @@ var PostActions = mcFly.createActions({
     //     data: result.post
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   },
   updatePost: function(post) {
@@ -54,7 +54,7 @@ var PostActions = mcFly.createActions({
     //     data: result.topic
     //   });
     // }).catch(function(err) {
-    //   console.err(err);
+    //   console.error(err);
     // });
   }
 });
