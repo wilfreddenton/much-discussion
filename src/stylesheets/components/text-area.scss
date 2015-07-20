@@ -1,0 +1,13 @@
+.controlled-textarea {
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid #ccc;
+}
+.controlled-textarea.post-content-textarea {
+  margin-top: 20px;
+}
+.controlled-textarea.reply-form-textarea {
+  margin-top: 20px;
+}

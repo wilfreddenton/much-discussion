@@ -1,3 +1,3 @@
-var McFly = require('mcfly');
+var Biff = require('biff');
 
-module.exports = new McFly();
+module.exports = new Biff();

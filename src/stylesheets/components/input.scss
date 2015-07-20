@@ -1,0 +1,15 @@
+.controlled-input {
+  font-weight: 300;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ccc;
+}
+.controlled-input.post-title-input {
+  font-size: 28px;
+}
+.controlled-input.topic-form-input {
+  padding: 10px 0;
+  margin: 15px 0;
+}

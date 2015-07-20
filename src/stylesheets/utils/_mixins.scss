@@ -1,0 +1,134 @@
+@mixin responsiveMin($width) {
+  @if $width == xlarge {
+    @media (min-width: $width-xlarge-min) {
+      @content;
+    }
+  } @else if $width == large {
+    @media (min-width: $width-large-min) {
+      @content;
+    }
+  } @else if $width == medium {
+    @media (min-width: $width-medium-min) {
+      @content;
+    }
+  } @else if $width == small {
+    @media (min-width: $width-small-min) {
+      @content;
+    }
+  } @else if $width == xsmall {
+    @media (min-width: $width-xsmall-min) {
+      @content;
+    }
+  }
+}
+@mixin responsiveMax($width) {
+  @if $width == xlarge {
+    @media (min-width: $width-xlarge) {
+      @content;
+    }
+  } @else if $width == large {
+    @media (max-width: $width-large) {
+      @content;
+    }
+  } @else if $width == medium {
+    @media (max-width: $width-medium) {
+      @content;
+    }
+  } @else if $width == small {
+    @media (max-width: $width-small) {
+      @content;
+    }
+  } @else if $width == xsmall {
+    @media (max-width: $width-xsmall) {
+      @content;
+    }
+  }
+}
+@mixin rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin roundedBottom($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-bottom-right-radius: $radius;
+  -ms-border-bottom-right-radius: $radius;
+  -o-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  -moz-border-bottom-left-radius: $radius;
+  -ms-border-bottom-left-radius: $radius;
+  -o-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+@mixin roundedTop($radius) {
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-top-right-radius: $radius;
+  -ms-border-top-right-radius: $radius;
+  -o-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  -moz-border-top-left-radius: $radius;
+  -ms-border-top-left-radius: $radius;
+  -o-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+}
+@mixin shadow($x, $y, $blur, $color) {
+  -webkit-box-shadow: $x $y $blur $color;
+  -moz-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+@mixin textShadow($x, $y, $blur, $color) {
+  -webkit-text-shadow: $x $y $blur $color;
+  -moz-text-shadow: $x $y $blur $color;
+  -ms-text-shadow: $x $y $blur $color;
+  -o-text-shadow: $x $y $blur $color;
+  text-shadow: $x $y $blur $color;
+}
+@mixin rotate($degree) {
+  -ms-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+  -o-transform: rotate($degree);
+  -webkit-transform: rotate($degree);
+  transform: rotate($degree);
+}
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+  transition: $time;
+}
+@mixin transitionTwo($time, $time2) {
+  -webkit-transition: $time, $time2;
+  -moz-transition: $time, $time2;
+  -o-transition: $time, $time2;
+  transition: $time, $time2;
+}
+@mixin responsiveTable() {
+  border: 0;
+  thead {
+    display: none;
+  }
+  tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+  }
+  td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted #ccc;
+  }
+  td:last-child {
+    border-bottom: 0;
+  }
+  td:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

@@ -6,6 +6,7 @@ var React = require('react')
 ,   Topic = require('./components/topic')
 ,   TopicForm = require('./components/topic-form')
 ,   Post = require('./components/post')
+,   PostTemp = require('./components/post-temp')
 ,   Posts = require('./components/posts')
 ,   PostForm = require('./components/post-form')
 ,   NotFound = require('./components/not-found');
@@ -19,6 +20,8 @@ var routes = (
     <DefaultRoute name="app" handler={Home} />
     <Route name="topics" handler={Topics} />
     <Route name="topic" path="/topics/:_id" handler={Topic} >
+      <DefaultRoute name="topic-show" handler={PostTemp} />
+      <Route name="post-new" path="posts/new" handler={PostForm} />
       <Route name="post" path="posts/:post_id" handler={Post} />
     </Route>
     <NotFoundRoute handler={NotFound} />

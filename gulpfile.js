@@ -1,9 +1,11 @@
 var gulp = require('gulp')
 ,   sass = require('gulp-sass')
 ,   livereload = require('gulp-livereload')
+,   notify = require('gulp-notify')
 ,   watch = require('gulp-watch')
 ,   rimraf = require('gulp-rimraf')
 ,   jshint = require('gulp-jshint')
+,   nodemon = require('gulp-nodemon')
 ,   browserify = require('browserify')
 ,   reactify = require('reactify')
 ,   source = require('vinyl-source-stream');
@@ -40,17 +42,18 @@ gulp.task('copy', ['cleanAssets'], function() {
 
 gulp.task('sass', function() {
   gulp.src('src/stylesheets/main.scss')
-    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'expanded'}))
     .pipe(gulp.dest('dist/stylesheets'))
     .pipe(livereload());
 });
 
-gulp.task('default', ['browserify', 'sass', 'copy'], function() {
+gulp.task('default', function() {
   livereload.listen();
+  nodemon({script: 'app.js', ignore: ['src/*', 'dist/*', 'gulpfile.js']});
   gulp.watch('src/scripts/**/*.js', ['browserify']);
   gulp.watch('src/index.html', ['copy']);
   watch('src/assets/**/*.*', function() {
     gulp.start('copy');
   });
-  gulp.watch('src/stylesheets/main.scss', ['sass']);
+  gulp.watch('src/stylesheets/**/*.scss', ['sass']);
 });

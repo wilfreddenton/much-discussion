@@ -1,0 +1,13 @@
+//Widths for @media queries
+$width-xlarge: 1400px;
+$width-large:  1280px;
+$width-medium: 768px;
+$width-small:  640px;
+$width-xsmall: 480px;
+
+//used for dynamic
+$width-xlarge-min: $width-xlarge + 1px;
+$width-large-min:  $width-large + 1px;
+$width-medium-min: $width-medium + 1px;
+$width-small-min:  $width-small + 1px;
+$width-xsmall-min: $width-xsmall + 1px;

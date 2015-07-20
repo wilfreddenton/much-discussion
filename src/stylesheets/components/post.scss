@@ -1,0 +1,6 @@
+.post-list-item {
+  transition: 200ms;
+}
+.post-list-item.active {
+  background-color: #eee;
+}

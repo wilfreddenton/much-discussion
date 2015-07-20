@@ -1,0 +1,11 @@
+.nested-route {
+  margin-left: 15px;
+  padding-left: 30px;
+}
+
+@include responsiveMax(medium) {
+  .nested-route {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

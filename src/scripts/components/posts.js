@@ -3,13 +3,16 @@ var React = require("react")
 
 var Posts = React.createClass({
   render: function() {
+    var self = this;
     var postNodes = this.props.data.map(function(post) {
       return (
         <PostListItem
-          key={post.postId}
+          klass={self.props.params.post_id === post._id ? 'active' : ''}
+          key={post._id}
           topicId={post.topicId}
-          postId={post.postId}
-          title={post.title} />
+          _id={post._id}
+          title={post.title}
+          params={self.props.params} />
       );
     });
     return (

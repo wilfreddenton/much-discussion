@@ -1,5 +1,4 @@
 var mcFly = require('../dispatchers/mcfly')
-,   Dispatcher = mcFly.dispatcher
 ,   _ = require('lodash');
 
 var _posts = [];
@@ -10,6 +9,14 @@ var PostStore = mcFly.createStore({
   },
   getPost: function(postId) {
     return _.find(_posts, 'postId', postId);
+  },
+  deletePost: function(postId) {
+    _.remove(_posts, function(post) {
+      return post._id === postId;
+    });
+  },
+  createPost: function(post) {
+    _posts.push(post);
   },
   updatePost: function(post) {
     var oldPost = this.getPost(post.postId);
@@ -24,9 +31,18 @@ var PostStore = mcFly.createStore({
       PostStore.loadPosts(payload.data);
       PostStore.emitChange();
       break;
+    case "POST_DELETED":
+      PostStore.deletePost(payload.data);
+      PostStore.emitChange();
+      break;
+    case "POST_CREATED":
+      PostStore.createPost(payload.data);
+      PostStore.emitChange();
+      break;
     case "POST_GET":
       PostStore.updatePost(payload.data);
       PostStore.emitChange();
+      break;
   }
 });
 

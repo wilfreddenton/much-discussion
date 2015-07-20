@@ -1,4 +1,5 @@
 var React = require("react")
+,   TopicForm = require('./topic-form')
 ,   TopicActions = require('../actions/topic-actions')
 ,   TopicListItem = require('./topic-list-item')
 ,   TopicStore = require('../stores/topic-store');
@@ -33,6 +34,7 @@ var Topics = React.createClass({
       <div className="container">
         <h3>topics</h3>
         {topicNodes}
+        <TopicForm />
       </div>
     );
   }

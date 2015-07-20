@@ -7,7 +7,7 @@ var Home = React.createClass({
   render: function() {
     return (
       <div className="container">
-        <p>Create topics, make posts about topics, reply to those posts.</p>
+        <p>Create topics, make posts about topics, reply to those posts!</p>
         <Link to="topics">topics</Link>
       </div>
     );

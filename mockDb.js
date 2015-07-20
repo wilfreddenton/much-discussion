@@ -1,6 +1,21 @@
-var mcFly = require('../dispatchers/mcfly')
-,   promises = require('../promises')
-,   _ = require('lodash');
+var _mockTopics = [
+  {
+    _id: "aaa",
+    name: "Anime/Manga"
+  },
+  {
+    _id: "ccc",
+    name: "Music"
+  },
+  {
+    _id: "ddd",
+    name: "Programming"
+  },
+  {
+    _id: "bbb",
+    name: "Technology/Science"
+  }
+];
 
 var _mockPosts = [
   {
@@ -29,43 +44,47 @@ var _mockPosts = [
   }
 ];
 
-var PostActions = mcFly.createActions({
-  deletePost: function(_id) {
-    var self = this;
-    promises.deletePromise('posts/' + _id).then(function(result) {
-      console.log(result);
-      if (result.status === 'success') {
-        self.dispatch({
-          actionType: "POST_DELETED",
-          data: _id
-        });
-      }
-    }).catch(function(err) {
-      console.err(err);
-    });
+var _mockReplies = [
+  {
+    _id: "424334",
+    postId: "111",
+    time: 1437314011397,
+    text: "Asuna from Sword Art Online no doubt."
   },
-  createPost: function(data) {
-    var self = this;
-    promises.postPromise('posts', data).then(function(result) {
-      self.dispatch({
-        actionType: "POST_CREATED",
-        data: result.post
-      });
-    }).catch(function(err) {
-      console.err(err);
-    });
+  {
+    _id: "848758",
+    postId: "111",
+    time: 1437314059191,
+    text: "Holo, obviously."
   },
-  loadPosts: function(topicId) {
-    var self = this;
-    promises.getPromise('topics/' + topicId).then(function(result) {
-      self.dispatch({
-        actionType: "POSTS_LOAD",
-        data: result.topic
-      });
-    }).catch(function(err) {
-      console.err(err);
-    });
+  {
+    _id: "476589",
+    postId: "111",
+    time: 1437314111162,
+    text: "Your mom hahaha"
+  },
+  {
+    _id: "585876",
+    postId: "222",
+    time: 1437321472237,
+    text: "Asuka is awesome!"
+  },
+  {
+    _id: "847595",
+    postId: "333",
+    time: 1437321528070,
+    text: "This show really is weird."
+  },
+  {
+    _id: "485509",
+    postId: "444",
+    time: 1437321560855,
+    text: "RAGE RAGE RAGE RAGE!!!"
   }
-});
+];
 
-module.exports = PostActions;
+module.exports = {
+  mockTopics: _mockTopics,
+  mockPosts: _mockPosts,
+  mockReplies: _mockReplies
+}
