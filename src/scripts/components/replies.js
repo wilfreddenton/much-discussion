@@ -11,7 +11,6 @@ var Replies = React.createClass({
     });
     return (
       <div className="replies">
-        <h4>replies</h4>
         {replyNodes}
       </div>
     );
