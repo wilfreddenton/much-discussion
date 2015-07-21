@@ -1,13 +1,14 @@
 var React = require("react")
+,   Markdown = require('./markdown')
 ,   moment = require('moment')
 ,   _ = require('lodash');
 
 var Reply = React.createClass({
   render: function() {
-    var formattedTime = moment(this.props.time).fromNow(); // moment(this.props.time).format('ll');
+    var formattedTime = moment(this.props.time).fromNow();
     return (
       <blockquote className="reply">
-        <p>{this.props.text}</p>
+        <Markdown data={this.props.text} />
         <span>posted {formattedTime}</span>
       </blockquote>
     );

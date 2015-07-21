@@ -3,6 +3,9 @@
   "description": "",
   "version": "0.0.0",
   "author": "Wilfred Denton @wilfreddenton",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "biff": "^0.2.0",
     "body-parser": "^1.13.2",
