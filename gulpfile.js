@@ -55,5 +55,6 @@ gulp.task('default', function() {
   watch('src/assets/**/*.*', function() {
     gulp.start('copy');
   });
+	gulp.start('copy', 'sass', 'browserify');
   gulp.watch('src/stylesheets/**/*.scss', ['sass']);
 });
